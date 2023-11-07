@@ -1,0 +1,49 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+
+function App() {
+ 
+ const [name,setName] = useState("")//state for name
+ const [list,setList] = useState([])//state for list
+
+ const handleAddFriend=(e)=>{
+  e.preventDefaultvalue();
+  console.log(name)
+  const fname={name}
+ if(name!==''){
+  setList((ls)=>[...ls,fname])
+  setName("")
+ }
+ };
+ //function for reset name
+const handleResetFriend=()=>{
+  setList([]);
+
+};
+return (
+    <>
+   <h1>Friendlist</h1>
+     <div class="container">
+
+     <input type="text" value={name} onChange={(e)=>setName(e.target.value)}></input>
+     </div>
+     <div class="bu">
+     <button onClick={handleAddFriend}>save</button>
+     <button onClick={handleResetFriend}>Reset</button>
+     </div>
+     
+     {
+      list.map((a)=><div>
+       <li>{a.name}</li>
+      </div>)
+    }
+
+    </>
+   
+    
+  )
+}
+
+export default App
